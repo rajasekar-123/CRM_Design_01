@@ -12,7 +12,7 @@ import { TableSkeleton, ErrorState } from "@/components/ui/data-states"
 import { StatCard } from "@/components/ui/stat-card"
 import { AMC_STATUS_CONFIG } from "@/constants/status-maps"
 
-import { Plus, BadgeCheck, AlertCircle, RefreshCw, Filter, MoreHorizontal, FileDoc, ShieldAlert } from "lucide-react"
+import { Plus, BadgeCheck, AlertCircle, RefreshCw, Filter, MoreHorizontal, FileText, ShieldAlert } from "lucide-react"
 import type { AMCContract } from "@/types"
 
 export default function AMCPage() {
@@ -41,7 +41,7 @@ export default function AMCPage() {
             {row.customerName}
           </div>
           <div className="text-xs flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
-            <FileDoc className="w-3.5 h-3.5" />
+            <FileText className="w-3.5 h-3.5" />
             {row.planName || "Standard AMC"}
           </div>
         </div>
