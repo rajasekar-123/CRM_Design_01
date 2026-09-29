@@ -36,10 +36,10 @@ export default function ReportsPage() {
         <SectionTitle title="Performance vs Target" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {reportCards.map((r) => (
-            <div key={r.label} className="rounded-2xl p-5" style={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))" }}>
-              <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "hsl(var(--muted-foreground))" }}>{r.label}</div>
-              <div className="text-3xl font-bold mb-4" style={{ color: r.color }}>{r.pct}%</div>
-              <div className="h-2 rounded-full" style={{ background: "hsl(var(--border))" }}>
+            <div key={r.label} className="bg-[#151B2B] rounded-[20px] p-6 border border-[#1E2536] shadow-lg hover:shadow-xl transition-shadow">
+              <div className="text-xs font-bold uppercase tracking-widest mb-4 text-slate-400">{r.label}</div>
+              <div className="text-[32px] font-bold mb-5 text-white" style={{ color: r.color }}>{r.pct}%</div>
+              <div className="h-2 rounded-full bg-[#1C2333]">
                 <div className="h-full rounded-full transition-all" style={{ width: `${r.pct}%`, background: r.color }} />
               </div>
             </div>
@@ -51,21 +51,21 @@ export default function ReportsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div>
           <SectionTitle title="Top Products by Revenue" />
-          <div className="rounded-2xl p-5 space-y-4" style={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))" }}>
+          <div className="bg-[#151B2B] rounded-[20px] p-6 space-y-4 border border-[#1E2536] shadow-lg">
             {topProducts.map((p, i) => (
               <div key={p.name}>
-                <div className="flex items-center justify-between mb-1.5">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold w-4" style={{ color: "hsl(var(--muted-foreground))" }}>#{i + 1}</span>
-                    <span className="text-sm font-medium" style={{ color: "hsl(var(--foreground))" }}>{p.name}</span>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs font-bold w-4 text-slate-400">#{i + 1}</span>
+                    <span className="text-[15px] font-bold text-white">{p.name}</span>
                   </div>
                   <div className="text-right">
-                    <div className="text-sm font-bold" style={{ color: "hsl(var(--foreground))" }}>{p.revenue}</div>
-                    <div className="text-[10px]" style={{ color: "hsl(var(--muted-foreground))" }}>{p.units} units</div>
+                    <div className="text-[15px] font-bold text-white">{p.revenue}</div>
+                    <div className="text-[11px] font-medium text-slate-400">{p.units} units</div>
                   </div>
                 </div>
-                <div className="h-1.5 rounded-full" style={{ background: "hsl(var(--border))" }}>
-                  <div className="h-full rounded-full" style={{ width: `${p.share * 3.2}%`, background: "linear-gradient(to right, hsl(250 80% 65%), hsl(280 70% 72%))" }} />
+                <div className="h-1.5 rounded-full bg-[#1C2333]">
+                  <div className="h-full rounded-full bg-[#5932EA]" style={{ width: `${p.share * 3.2}%` }} />
                 </div>
               </div>
             ))}
@@ -74,17 +74,17 @@ export default function ReportsPage() {
 
         <div>
           <SectionTitle title="Monthly Revenue Trend" />
-          <div className="rounded-2xl p-5 h-[calc(100%-2.5rem)]" style={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))" }}>
-            <div className="flex items-end gap-2 h-44">
+          <div className="bg-[#151B2B] rounded-[20px] p-6 h-[calc(100%-2.5rem)] border border-[#1E2536] shadow-lg">
+            <div className="flex items-end justify-between gap-2 mt-6 h-48">
               {[
                 { m: "Jan", v: 72 }, { m: "Feb", v: 84 }, { m: "Mar", v: 68 },
                 { m: "Apr", v: 91 }, { m: "May", v: 88 }, { m: "Jun", v: 104 },
                 { m: "Jul", v: 98 }, { m: "Aug", v: 112 }, { m: "Sep", v: 124 },
               ].map((d) => (
-                <div key={d.m} className="flex-1 flex flex-col items-center gap-1">
-                  <span className="text-[9px] font-bold" style={{ color: "hsl(var(--muted-foreground))" }}>${d.v}K</span>
-                  <div className="w-full rounded-t-md" style={{ height: `${(d.v / 130) * 100}%`, background: "linear-gradient(to top, hsl(250 80% 65%), hsl(280 70% 72%))", opacity: 0.8 }} />
-                  <span className="text-[9px]" style={{ color: "hsl(var(--muted-foreground))" }}>{d.m}</span>
+                <div key={d.m} className="flex-1 flex flex-col items-center gap-2 group">
+                  <span className="text-[11px] font-bold text-white opacity-0 group-hover:opacity-100 transition-opacity">${d.v}K</span>
+                  <div className="w-full rounded-t-lg transition-colors bg-[#1C2333] group-hover:bg-[#5932EA]" style={{ height: `${(d.v / 130) * 100}%` }} />
+                  <span className="text-[11px] font-medium text-slate-400">{d.m}</span>
                 </div>
               ))}
             </div>

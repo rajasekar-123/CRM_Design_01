@@ -38,8 +38,8 @@ export default function LeadsPage() {
         <div className="flex items-center gap-3">
           <UserAvatar name={row.name} size="xs" />
           <div>
-            <div className="font-semibold text-slate-900 dark:text-white">{row.name}</div>
-            <div className="text-xs text-slate-500 dark:text-slate-400">{row.company}</div>
+            <div className="font-semibold text-white">{row.name}</div>
+            <div className="text-xs text-slate-400">{row.company}</div>
           </div>
         </div>
       ),
@@ -49,7 +49,7 @@ export default function LeadsPage() {
       label: "Value",
       align: "right",
       render: (row) => (
-        <span className="font-medium text-slate-900 dark:text-white">
+        <span className="font-medium text-white">
           {formatCurrency(row.value)}
         </span>
       ),
@@ -67,7 +67,7 @@ export default function LeadsPage() {
       key: "assigned",
       label: "Assigned To",
       render: (row) => (
-        <span className="inline-flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-300">
+        <span className="inline-flex items-center gap-1.5 text-sm text-slate-300">
           <User className="w-3.5 h-3.5 text-slate-400" />
           {row.assignedTo || "Unassigned"}
         </span>
@@ -84,7 +84,7 @@ export default function LeadsPage() {
       align: "right",
       width: "50px",
       render: () => (
-        <button className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 p-1 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+        <button className="text-slate-400 hover:text-white p-1 rounded-md hover:bg-[#1C2333] transition-colors">
           <MoreHorizontal className="w-4 h-4" />
         </button>
       ),
@@ -106,15 +106,15 @@ export default function LeadsPage() {
           label="Total Active Leads"
           value={totalLeads.toString()}
           icon={Target}
-          iconColor="text-blue-600 dark:text-blue-400"
-          iconBg="bg-blue-50 dark:bg-blue-950/40"
+          iconColor="text-blue-400"
+          iconBg="bg-blue-500/20"
         />
         <StatCard
           label="Pipeline Value"
           value={formatCompact(activeValue)}
           icon={Trophy}
-          iconColor="text-emerald-600 dark:text-emerald-400"
-          iconBg="bg-emerald-50 dark:bg-emerald-950/40"
+          iconColor="text-emerald-400"
+          iconBg="bg-emerald-500/20"
         />
         <StatCard
           label="Hot Leads (Proposal/Neg.)"
@@ -122,8 +122,8 @@ export default function LeadsPage() {
           alert={hotLeads > 2 ? "High Priority" : undefined}
           alertType="warning"
           icon={Flame}
-          iconColor="text-amber-600 dark:text-amber-400"
-          iconBg="bg-amber-50 dark:bg-amber-950/40"
+          iconColor="text-amber-400"
+          iconBg="bg-amber-500/20"
         />
       </div>
 
@@ -139,7 +139,7 @@ export default function LeadsPage() {
           data={data}
           keyExtractor={(row) => row.id}
           action={
-            <button className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200">
+            <button className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-white">
               <Filter className="w-3.5 h-3.5" /> Filter
             </button>
           }

@@ -44,21 +44,21 @@ export default function CRMPage() {
             <div key="contact" className="flex items-center gap-3">
               <Avatar name={c.name} />
               <div>
-                <div className="font-semibold text-sm" style={{ color: "hsl(var(--foreground))" }}>{c.name}</div>
-                <div className="text-xs" style={{ color: "hsl(var(--muted-foreground))" }}>{c.company}</div>
+                <div className="font-bold text-[15px] text-white">{c.name}</div>
+                <div className="text-xs text-slate-400 mt-0.5">{c.company}</div>
               </div>
             </div>,
-            <div key="email" className="flex items-center gap-1.5 text-xs" style={{ color: "hsl(var(--muted-foreground))" }}>
-              <Mail className="w-3 h-3" />{c.email}
+            <div key="email" className="flex items-center gap-1.5 text-xs text-slate-400 font-medium">
+              <Mail className="w-3.5 h-3.5" />{c.email}
             </div>,
-            <div key="phone" className="flex items-center gap-1.5 text-xs" style={{ color: "hsl(var(--muted-foreground))" }}>
-              <Phone className="w-3 h-3" />{c.phone}
+            <div key="phone" className="flex items-center gap-1.5 text-xs text-slate-400 font-medium">
+              <Phone className="w-3.5 h-3.5" />{c.phone}
             </div>,
             <StatusBadge key="status" label={c.status} variant={statusVariant[c.status]} />,
-            <span key="value" className="font-semibold text-sm" style={{ color: "hsl(var(--foreground))" }}>{c.value}</span>,
+            <span key="value" className="font-bold text-sm text-white">{c.value}</span>,
             <div key="rating" className="flex gap-0.5">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="w-3 h-3" fill={i < c.rating ? "hsl(38 92% 58%)" : "none"} stroke={i < c.rating ? "hsl(38 92% 58%)" : "hsl(var(--border))"} />
+                <Star key={i} className="w-3.5 h-3.5" fill={i < c.rating ? "#F59E0B" : "none"} stroke={i < c.rating ? "#F59E0B" : "#1E2536"} />
               ))}
             </div>,
           ])}

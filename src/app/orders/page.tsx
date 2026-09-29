@@ -37,13 +37,13 @@ export default function OrdersPage() {
         <DataTable
           headers={["Order ID", "Customer", "Items", "Qty", "Total", "Status", "Date"]}
           rows={orders.map((o) => [
-            <span key="id" className="text-xs font-mono font-bold" style={{ color: "hsl(var(--primary))" }}>{o.id}</span>,
-            <span key="cust" className="font-medium text-sm" style={{ color: "hsl(var(--foreground))" }}>{o.customer}</span>,
-            <span key="items" className="text-xs" style={{ color: "hsl(var(--muted-foreground))" }}>{o.items}</span>,
-            <span key="qty" className="text-sm font-semibold" style={{ color: "hsl(var(--foreground))" }}>{o.qty}</span>,
-            <span key="total" className="font-bold text-sm" style={{ color: "hsl(var(--foreground))" }}>{o.total}</span>,
+            <span key="id" className="text-[13px] font-mono font-bold text-[#A886FF]">{o.id}</span>,
+            <span key="cust" className="font-bold text-[15px] text-white">{o.customer}</span>,
+            <span key="items" className="text-xs text-slate-400 font-medium">{o.items}</span>,
+            <span key="qty" className="text-sm font-bold text-white">{o.qty}</span>,
+            <span key="total" className="font-bold text-sm text-white">{o.total}</span>,
             <StatusBadge key="status" label={o.status} variant={statusVariant[o.status]} />,
-            <div key="date" className="flex items-center gap-1.5 text-xs" style={{ color: "hsl(var(--muted-foreground))" }}><Calendar className="w-3 h-3" />{o.date}</div>,
+            <div key="date" className="flex items-center gap-1.5 text-xs text-slate-400 font-medium"><Calendar className="w-3.5 h-3.5" />{o.date}</div>,
           ])}
         />
       </div>

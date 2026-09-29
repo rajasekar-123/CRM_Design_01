@@ -18,11 +18,11 @@ export function PageHeader({
   return (
     <div className="flex items-center justify-between mb-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight" style={{ color: "hsl(var(--foreground))" }}>
+        <h1 className="text-[28px] font-bold tracking-tight text-[#000000]">
           {title}
         </h1>
         {subtitle && (
-          <p className="text-sm mt-1" style={{ color: "hsl(var(--muted-foreground))" }}>
+          <p className="text-sm mt-1 text-slate-500 font-medium">
             {subtitle}
           </p>
         )}
@@ -30,14 +30,7 @@ export function PageHeader({
       {actionLabel && (
         <button
           onClick={action}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-150"
-          style={{
-            background: "hsl(var(--primary))",
-            color: "#fff",
-            boxShadow: "0 4px 16px hsl(var(--primary) / 0.35)",
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
-          onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+          className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-150 bg-[#5932EA] text-white hover:bg-[#5932EA]/90 hover:shadow-lg hover:shadow-[#5932EA]/30"
         >
           {actionLabel}
         </button>
@@ -61,54 +54,39 @@ export function StatCard({
 }) {
   return (
     <div
-      className="relative rounded-2xl p-5 overflow-hidden transition-all duration-200 hover:-translate-y-0.5"
-      style={{
-        background: "hsl(var(--card))",
-        border: "1px solid hsl(var(--border))",
-        boxShadow: "0 2px 12px hsl(0 0% 0% / 0.15)",
-      }}
-      onMouseEnter={(e) => {
-        const el = e.currentTarget as HTMLElement
-        el.style.borderColor = "hsl(var(--primary) / 0.3)"
-        el.style.boxShadow = "0 8px 32px hsl(var(--primary) / 0.1)"
-      }}
-      onMouseLeave={(e) => {
-        const el = e.currentTarget as HTMLElement
-        el.style.borderColor = "hsl(var(--border))"
-        el.style.boxShadow = "0 2px 12px hsl(0 0% 0% / 0.15)"
-      }}
+      className="relative rounded-[20px] p-6 overflow-hidden transition-shadow duration-200 bg-[#151B2B] border border-[#1E2536] shadow-lg hover:shadow-xl flex flex-col gap-4"
     >
-      <div className="absolute -right-3 -top-3 w-20 h-20 rounded-full opacity-20" style={{ background: gradient, filter: "blur(16px)" }} />
-      <div className="flex items-start justify-between mb-3 relative z-10">
-        <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "hsl(var(--muted-foreground))" }}>
+      <div className="flex items-start justify-between relative z-10">
+        <span className="text-xs font-semibold tracking-wider uppercase text-slate-400">
           {label}
         </span>
-        <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: gradient }}>
-          <Icon className="w-4 h-4 text-white" />
+        <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: gradient }}>
+          <Icon className="w-5 h-5 text-white" strokeWidth={2.5} />
         </div>
       </div>
-      <div className="text-2xl font-bold relative z-10" style={{ color: "hsl(var(--foreground))" }}>
-        {value}
-      </div>
-      {sub && (
-        <div className="text-xs mt-1 relative z-10" style={{ color: "hsl(var(--muted-foreground))" }}>
-          {sub}
+      <div>
+        <div className="text-[28px] font-bold leading-tight text-white truncate">
+          {value}
         </div>
-      )}
+        {sub && (
+          <div className="text-xs mt-1 text-slate-400 font-medium">
+            {sub}
+          </div>
+        )}
+      </div>
     </div>
   )
 }
 
 export function SectionTitle({ title, action }: { title: string; action?: string }) {
   return (
-    <div className="flex items-center justify-between mb-4">
-      <h2 className="text-xs font-bold uppercase tracking-widest" style={{ color: "hsl(var(--muted-foreground))" }}>
+    <div className="flex items-center justify-between mb-6">
+      <h3 className="text-[22px] font-bold text-[#000000]">
         {title}
-      </h2>
+      </h3>
       {action && (
         <button
-          className="flex items-center gap-1 text-xs font-semibold"
-          style={{ color: "hsl(var(--primary))" }}
+          className="flex items-center gap-1 text-xs font-semibold text-[#5932EA] hover:text-[#5932EA]/80"
         >
           {action} <ArrowUpRight className="w-3.5 h-3.5" />
         </button>
@@ -125,16 +103,15 @@ export function DataTable({
   rows: React.ReactNode[][]
 }) {
   return (
-    <div className="rounded-2xl overflow-hidden" style={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))" }}>
+    <div className="rounded-[20px] overflow-hidden bg-[#151B2B] border border-[#1E2536] shadow-lg">
       <div className="overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead style={{ background: "hsl(var(--muted))", borderBottom: "1px solid hsl(var(--border))" }}>
+        <table className="w-full text-sm text-left">
+          <thead className="bg-[#1C2333] border-b border-[#1E2536]">
             <tr>
               {headers.map((h) => (
                 <th
                   key={h}
-                  className="px-6 py-3.5 text-left text-[10px] font-bold uppercase tracking-widest"
-                  style={{ color: "hsl(var(--muted-foreground))" }}
+                  className="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest"
                 >
                   {h}
                 </th>
@@ -145,13 +122,10 @@ export function DataTable({
             {rows.map((row, ri) => (
               <tr
                 key={ri}
-                className="transition-colors duration-100"
-                style={{ borderBottom: "1px solid hsl(var(--border) / 0.5)" }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = "hsl(var(--muted) / 0.5)")}
-                onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                className="transition-colors duration-100 border-b border-[#1E2536]/50 hover:bg-[#1C2333]"
               >
                 {row.map((cell, ci) => (
-                  <td key={ci} className="px-6 py-4">
+                  <td key={ci} className="px-6 py-4 text-white">
                     {cell}
                   </td>
                 ))}

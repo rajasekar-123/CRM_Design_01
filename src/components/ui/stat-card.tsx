@@ -38,45 +38,39 @@ export function StatCard({
       whileHover={{ y: -4, scale: 1.01 }}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       className={cn(
-        "relative overflow-hidden bg-white/70 dark:bg-slate-900/70 backdrop-blur-md rounded-xl border border-slate-200/60 dark:border-slate-800/60",
-        "p-5 flex items-start gap-4 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-shadow",
+        "relative overflow-hidden bg-[#151B2B] rounded-[20px] p-6 flex items-center gap-5 border border-[#1E2536] shadow-lg transition-shadow",
         className
       )}
     >
-      {/* Subtle top gradient accent line based on iconBg color */}
-      <div className={cn("absolute top-0 left-0 right-0 h-[2px] opacity-20", iconBg.replace('bg-', 'bg-gradient-to-r from-transparent via-').split(' ')[0] + ' to-transparent')} />
-
       {/* Icon */}
-      <div className={cn("w-11 h-11 rounded-xl flex items-center justify-center shrink-0 shadow-sm", iconBg, "dark:bg-opacity-20")}>
-        <Icon className={cn("w-5 h-5", iconColor)} />
+      <div className={cn("w-16 h-16 rounded-2xl flex items-center justify-center shrink-0", iconBg)}>
+        <Icon className={cn("w-7 h-7 text-white")} strokeWidth={2.5} />
       </div>
 
       {/* Content */}
-      <div className="min-w-0 flex-1">
-        <p className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5">
+      <div className="flex flex-col min-w-0">
+        <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-1">
           {label}
-        </p>
-        <p className="text-2xl font-bold text-slate-900 dark:text-white leading-none tracking-tight">
+        </span>
+        <span className="text-white text-[28px] font-bold leading-none truncate">
           {value}
-        </p>
+        </span>
 
         {/* Trend or Alert */}
-        <div className="mt-3 flex items-center gap-2 flex-wrap">
+        <div className="text-xs font-medium flex items-center gap-1.5 flex-wrap mt-2">
           {trend !== undefined && (
             <span
               className={cn(
-                "inline-flex items-center gap-1 text-[11px] font-bold px-1.5 py-0.5 rounded-md",
-                trend >= 0 
-                  ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400" 
-                  : "bg-red-50 text-red-700 dark:bg-red-950/30 dark:text-red-400"
+                "inline-flex items-center gap-0.5",
+                trend >= 0 ? "text-[#00AC56]" : "text-[#D0004B]"
               )}
             >
-              {trend >= 0 ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
-              {trend >= 0 ? "+" : ""}{trend.toFixed(1)}%
+              {trend >= 0 ? "↑" : "↓"} {Math.abs(trend).toFixed(1)}%
+              <span className="text-slate-500 ml-1 font-normal">this month</span>
             </span>
           )}
           {alert && (
-            <span className={cn("inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold ring-1 ring-inset", alertVariant)}>
+            <span className={cn("inline-flex items-center rounded-md text-[10px] uppercase tracking-wider font-bold", alertVariant)}>
               {alert}
             </span>
           )}

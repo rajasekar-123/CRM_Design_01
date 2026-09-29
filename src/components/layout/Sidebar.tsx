@@ -7,7 +7,7 @@ import {
   LayoutDashboard, Users, UserPlus, DollarSign, FileText,
   ShoppingCart, Package, Wrench, Car, BadgeCheck,
   BookUser, Receipt, CreditCard, BarChart2,
-  Sparkles, Settings, ChevronRight,
+  Settings, ChevronRight, Sparkles
 } from "lucide-react"
 
 interface NavItem {
@@ -63,75 +63,86 @@ function NavLink({ item }: { item: NavItem }) {
     <Link
       href={item.href}
       className={cn(
-        "nav-link relative overflow-hidden group",
-        isActive ? "nav-link-active" : "nav-link-inactive hover:bg-white/5"
+        "nav-link relative overflow-hidden group flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-300",
+        isActive 
+          ? "bg-[#5932EA] text-white shadow-md shadow-[#5932EA]/40" 
+          : "text-[#9197B3] hover:bg-[#5932EA]/5 hover:text-[#5932EA]"
       )}
     >
-      {/* Subtle hover gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/[0.03] to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 pointer-events-none" />
-      
-      <Icon className={cn("w-4 h-4 shrink-0 transition-transform duration-200", isActive ? "scale-110" : "group-hover:scale-110")} />
-      <span className="flex-1 tracking-wide">{item.label}</span>
-      {isActive && <ChevronRight className="w-3 h-3 opacity-60" />}
+      <div className="flex items-center gap-3">
+        <Icon className={cn("w-5 h-5 shrink-0 transition-transform duration-200", isActive ? "scale-110" : "group-hover:scale-110")} />
+        <span className="font-medium tracking-wide">{item.label}</span>
+      </div>
+      {!isActive && item.href !== "/" && <ChevronRight className="w-4 h-4 opacity-50" />}
     </Link>
   )
 }
 
 export function Sidebar() {
   return (
-    <aside
-      className={cn(
-        "hidden md:flex flex-col w-64 shrink-0 h-screen sticky top-0 z-30 transition-colors duration-300",
-        "border-r border-slate-200/50 dark:border-white/[0.05]",
-        "bg-slate-50/80 dark:bg-[#0B1120]/80 backdrop-blur-xl" // Light/Dark glassmorphism
-      )}
-    >
+    <aside className="hidden md:flex flex-col w-[280px] shrink-0 h-screen sticky top-0 z-30 bg-white border-r border-[#F0F0F0]">
       {/* Logo */}
-      <div className="h-14 flex items-center px-5 border-b border-slate-200/50 dark:border-white/[0.05] shrink-0">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shrink-0 shadow-sm shadow-blue-900/20">
+      <div className="h-24 flex items-center px-8 shrink-0">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shrink-0 shadow-sm">
             <Sparkles className="w-4 h-4 text-white" />
           </div>
-          <span className="font-bold text-slate-900 dark:text-white text-base tracking-tight">
-            Synergy<span className="text-blue-600 dark:text-blue-500">Biz</span>
+          <span className="font-extrabold text-[#000000] text-2xl tracking-tight flex items-baseline gap-1">
+            Synergy<span className="text-blue-600">Biz</span>
           </span>
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1 custom-scrollbar">
+      <nav className="flex-1 overflow-y-auto px-5 pb-8 space-y-4 custom-scrollbar mt-2">
         {NAV_GROUPS.map((group, gi) => (
-          <div key={gi} className={gi > 0 ? "pt-5" : ""}>
+          <div key={gi} className="space-y-1">
             {group.label && (
-              <p className="px-3 mb-2 text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+              <p className="px-4 mb-2 mt-4 text-[11px] font-bold uppercase tracking-widest text-[#9197B3]">
                 {group.label}
               </p>
             )}
-            <div className="space-y-0.5">
-              {group.items.map((item) => (
-                <NavLink key={item.href} item={item} />
-              ))}
-            </div>
+            {group.items.map((item) => (
+              <NavLink key={item.href} item={item} />
+            ))}
           </div>
         ))}
+
+        {/* Footer static links inside nav to scroll together if it gets too long */}
+        <div className="pt-4 border-t border-[#F0F0F0] mt-4 space-y-1">
+          <Link
+            href="/ai"
+            className="flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-300 text-[#9197B3] hover:bg-blue-50 hover:text-blue-600 group"
+          >
+            <div className="flex items-center gap-3">
+              <Sparkles className="w-5 h-5 shrink-0 transition-transform duration-200 group-hover:scale-110" />
+              <span className="font-medium tracking-wide">AI Copilot</span>
+            </div>
+          </Link>
+          <Link
+            href="/settings"
+            className="flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-300 text-[#9197B3] hover:bg-[#5932EA]/5 hover:text-[#5932EA] group"
+          >
+            <div className="flex items-center gap-3">
+              <Settings className="w-5 h-5 shrink-0 transition-transform duration-200 group-hover:scale-110" />
+              <span className="font-medium tracking-wide">Settings</span>
+            </div>
+          </Link>
+        </div>
       </nav>
 
-      {/* Footer */}
-      <div className="shrink-0 px-3 py-4 border-t border-slate-200/50 dark:border-white/[0.05] space-y-0.5 bg-gradient-to-t from-slate-100/50 to-transparent dark:from-[#0B1120] dark:to-transparent">
-        <Link
-          href="/ai"
-          className="nav-link nav-link-inactive hover:bg-blue-50/50 dark:hover:bg-blue-900/20 group"
-        >
-          <Sparkles className="w-4 h-4 shrink-0 text-blue-600 dark:text-blue-400 group-hover:animate-pulse" />
-          <span className="flex-1 text-blue-700 dark:text-blue-300 font-medium tracking-wide">AI Copilot</span>
-          <span className="text-[9px] font-bold bg-blue-100 dark:bg-blue-600/30 text-blue-700 dark:text-blue-300 px-1.5 py-0.5 rounded-full border border-blue-200 dark:border-transparent">
-            AI
-          </span>
-        </Link>
-        <Link href="/settings" className="nav-link nav-link-inactive hover:bg-slate-100/50 dark:hover:bg-white/5">
-          <Settings className="w-4 h-4 shrink-0" />
-          <span className="tracking-wide">Settings</span>
-        </Link>
+      {/* User Profile Footer */}
+      <div className="shrink-0 px-8 py-6 border-t border-[#F0F0F0]">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-[#E2E8F0] overflow-hidden shrink-0 flex items-center justify-center text-[#5932EA] font-bold text-lg">
+            A
+          </div>
+          <div className="flex flex-col">
+            <span className="text-sm font-bold text-[#000000]">Admin User</span>
+            <span className="text-xs text-[#757575]">System Administrator</span>
+          </div>
+          <ChevronRight className="w-4 h-4 text-[#757575] ml-auto rotate-90" />
+        </div>
       </div>
     </aside>
   )
