@@ -69,6 +69,7 @@ export async function getLeads(): Promise<Lead[]> {
       value: 25000,
       assignedTo: "John Doe",
       createdAt: new Date(Date.now() - 1 * 86400000).toISOString(),
+      updatedAt: new Date().toISOString(),
     },
     {
       id: "LD-2024-002",
@@ -80,6 +81,7 @@ export async function getLeads(): Promise<Lead[]> {
       value: 120000,
       assignedTo: "Jane Smith",
       createdAt: new Date(Date.now() - 5 * 86400000).toISOString(),
+      updatedAt: new Date().toISOString(),
     },
     {
       id: "LD-2024-003",
@@ -91,6 +93,7 @@ export async function getLeads(): Promise<Lead[]> {
       value: 85000,
       assignedTo: "John Doe",
       createdAt: new Date(Date.now() - 12 * 86400000).toISOString(),
+      updatedAt: new Date().toISOString(),
     },
     {
       id: "LD-2024-004",
@@ -102,6 +105,7 @@ export async function getLeads(): Promise<Lead[]> {
       value: 45000,
       assignedTo: "Jane Smith",
       createdAt: new Date(Date.now() - 3 * 86400000).toISOString(),
+      updatedAt: new Date().toISOString(),
     }
   ]
 }
