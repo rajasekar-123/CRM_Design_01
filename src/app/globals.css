@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────
+   Design System — CSS Custom Properties
+   Light mode default, .dark class activates dark theme
+   ───────────────────────────────────────────────────────────── */
+
+@layer base {
+  :root {
+    /* Background */
+    --background:    0 0% 98%;
+    --foreground:    222 47% 11%;
+
+    /* Card / Surface */
+    --card:          0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    /* Popover */
+    --popover:       0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Primary — Blue */
+    --primary:       221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary */
+    --secondary:     210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    /* Muted */
+    --muted:         210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* Accent */
+    --accent:        210 40% 94%;
+    --accent-foreground: 222 47% 11%;
+
+    /* Destructive */
+    --destructive:   0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Border / Input / Ring */
+    --border:        214 32% 91%;
+    --input:         214 32% 91%;
+    --ring:          221 83% 53%;
+
+    /* Sidebar specific */
+    --sidebar-bg:       222 47% 11%;
+    --sidebar-fg:       215 20% 65%;
+    --sidebar-active:   221 83% 53%;
+    --sidebar-hover:    0 0% 100% / 0.06;
+
+    /* Semantic */
+    --success:   160 84% 39%;
+    --warning:   38 92% 50%;
+    --danger:    0 84% 60%;
+    --info:      199 89% 48%;
+
+    /* Radius */
+    --radius: 0.625rem;
+  }
+
+  .dark {
+    --background:    222 47% 8%;
+    --foreground:    210 40% 96%;
+
+    --card:          222 47% 11%;
+    --card-foreground: 210 40% 96%;
+
+    --popover:       222 47% 11%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary:       221 83% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary:     217 33% 17%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted:         217 33% 17%;
+    --muted-foreground: 215 20% 60%;
+
+    --accent:        217 33% 17%;
+    --accent-foreground: 210 40% 96%;
+
+    --destructive:   0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border:        217 33% 18%;
+    --input:         217 33% 18%;
+    --ring:          221 83% 60%;
+
+    --sidebar-bg:    222 47% 7%;
+    --sidebar-fg:    215 20% 55%;
+    --sidebar-active: 221 83% 60%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar        { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track  { background: transparent; }
+  ::-webkit-scrollbar-thumb  { background: hsl(var(--border)); border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground) / 0.4); }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Utilities
+   ───────────────────────────────────────────────────────────── */
+
+@layer utilities {
+  /* Text */
+  .text-balance { text-wrap: balance; }
+
+  /* Sidebar nav link */
+  .nav-link {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-100 select-none;
+  }
+  .nav-link-inactive {
+    @apply text-slate-400 hover:text-slate-200 hover:bg-white/5;
+  }
+  .nav-link-active {
+    @apply text-white bg-blue-600/90 shadow-sm;
+  }
+
+  /* Focus ring */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
+}

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synergy Biz | Modern CRM Dashboard</title>
+    <meta name="description" content="Premium SaaS CRM Dashboard for Sales, Service, Rental, and AMC management">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons for modern thin icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon"><i class="ph-fill ph-circles-three-plus"></i></div>
+                    <span class="logo-text">Synergy<span>Biz</span></span>
+                </div>
+            </div>
+            
+            <div class="sidebar-menu-container">
+                <ul class="sidebar-menu">
+                    <li class="menu-item active">
+                        <a href="#"><i class="ph ph-squares-four"></i> Dashboard</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#"><i class="ph ph-users"></i> CRM</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#"><i class="ph ph-user-plus"></i> Leads</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#"><i class="ph ph-currency-dollar"></i> Sales</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#"><i class="ph ph-file-text"></i> Quotations</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#"><i class="ph ph-shopping-cart"></i> Orders</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#"><i class="ph ph-package"></i> Inventory</a>
+                    </li>
+                    
+                    <div class="menu-section">Operations</div>
+                    
+                    <li class="menu-item">
+                        <a href="#"><i class="ph ph-wrench"></i> Service</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#"><i class="ph ph-car"></i> Rental</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#"><i class="ph ph-file-doc"></i> AMC</a>
+                    </li>
+                    
+                    <div class="menu-section">Finance & More</div>
+                    
+                    <li class="menu-item">
+                        <a href="#"><i class="ph ph-address-book"></i> Customers</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#"><i class="ph ph-receipt"></i> Invoices</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#"><i class="ph ph-credit-card"></i> Payments</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#"><i class="ph ph-chart-bar"></i> Reports</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-footer">
+                <ul class="sidebar-menu">
+                    <li class="menu-item ai-copilot">
+                        <a href="#"><i class="ph-fill ph-magic-wand"></i> AI Copilot</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#"><i class="ph ph-gear"></i> Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="page-title">
+                    <h1>Dashboard</h1>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="search-bar">
+                        <i class="ph ph-magnifying-glass"></i>
+                        <input type="text" placeholder="Global Search...">
+                        <div class="shortcut">⌘K</div>
+                    </div>
+                    
+                    <button class="icon-btn">
+                        <i class="ph ph-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    
+                    <button class="icon-btn">
+                        <i class="ph ph-chat-circle-dots"></i>
+                    </button>
+                    
+                    <div class="user-profile">
+                        <img src="https://ui-avatars.com/api/?name=Sarah+Jenkins&background=E0E7FF&color=4338CA&bold=true" alt="User Profile">
+                        <div class="user-info">
+                            <span class="user-name">Sarah Jenkins</span>
+                            <i class="ph ph-caret-down"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-scroll-area">
+                
+                <div class="welcome-section">
+                    <h2>Hello, Sarah! <span class="wave">👋</span></h2>
+                    <p>Overview & Performance</p>
+                </div>
+
+                <!-- KPIs Grid -->
+                <div class="kpi-grid">
+                    <!-- KPI Card 1 -->
+                    <div class="kpi-card">
+                        <div class="kpi-icon bg-blue"><i class="ph ph-currency-dollar"></i></div>
+                        <div class="kpi-details">
+                            <span class="kpi-title">Total Revenue</span>
+                            <div class="kpi-value-row">
+                                <span class="kpi-value">$245,890.00</span>
+                                <span class="kpi-trend positive"><i class="ph ph-trend-up"></i> +12.4%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- KPI Card 2 -->
+                    <div class="kpi-card">
+                        <div class="kpi-icon bg-indigo"><i class="ph ph-chart-line-up"></i></div>
+                        <div class="kpi-details">
+                            <span class="kpi-title">Sales Performance</span>
+                            <div class="kpi-value-row">
+                                <span class="kpi-value">$112,450.00</span>
+                                <span class="kpi-trend positive"><i class="ph ph-trend-up"></i> +8.1%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KPI Card 3 -->
+                    <div class="kpi-card">
+                        <div class="kpi-icon bg-orange"><i class="ph ph-wrench"></i></div>
+                        <div class="kpi-details">
+                            <span class="kpi-title">Active Service Tickets</span>
+                            <div class="kpi-value-row">
+                                <span class="kpi-value">134</span>
+                                <span class="kpi-alert danger">45 Urgent</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KPI Card 4 -->
+                    <div class="kpi-card">
+                        <div class="kpi-icon bg-teal"><i class="ph ph-car"></i></div>
+                        <div class="kpi-details">
+                            <span class="kpi-title">Active Rental Contracts</span>
+                            <div class="kpi-value-row">
+                                <span class="kpi-value">88</span>
+                                <span class="kpi-alert warning">5 Expiring</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KPI Card 5 -->
+                    <div class="kpi-card">
+                        <div class="kpi-icon bg-purple"><i class="ph ph-file-doc"></i></div>
+                        <div class="kpi-details">
+                            <span class="kpi-title">Active AMC Contracts</span>
+                            <div class="kpi-value-row">
+                                <span class="kpi-value">56</span>
+                                <span class="kpi-alert warning">3 Due Soon</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KPI Card 6 -->
+                    <div class="kpi-card">
+                        <div class="kpi-icon bg-red"><i class="ph ph-receipt"></i></div>
+                        <div class="kpi-details">
+                            <span class="kpi-title">Pending Payments</span>
+                            <div class="kpi-value-row">
+                                <span class="kpi-value">$18,230.00</span>
+                                <span class="kpi-subtext">15 Invoices</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Charts Area -->
+                <div class="charts-layout">
+                    <!-- Revenue Growth Chart -->
+                    <div class="card chart-card large">
+                        <div class="card-header">
+                            <h3>Revenue Growth</h3>
+                            <select class="minimal-select">
+                                <option>Last 30 days</option>
+                                <option>This Quarter</option>
+                                <option>This Year</option>
+                            </select>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Calendar / Quick Actions -->
+                    <div class="side-widgets">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>September 2026</h3>
+                                <div class="calendar-nav">
+                                    <button><i class="ph ph-caret-left"></i></button>
+                                    <button><i class="ph ph-caret-right"></i></button>
+                                </div>
+                            </div>
+                            <div class="calendar-grid">
+                                <div class="day-name">Su</div><div class="day-name">Mo</div><div class="day-name">Tu</div>
+                                <div class="day-name">We</div><div class="day-name">Th</div><div class="day-name">Fr</div><div class="day-name">Sa</div>
+                                <!-- Filled by JS -->
+                            </div>
+                        </div>
+                        
+                        <div class="card compact">
+                            <div class="card-header">
+                                <h3>Recent Customer Profiles</h3>
+                                <i class="ph ph-caret-down"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="card compact">
+                            <div class="card-header">
+                                <h3>Upcoming AMC Expiries</h3>
+                                <i class="ph ph-caret-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secondary Charts Grid -->
+                <div class="secondary-charts-grid">
+                    <!-- Sales Pipeline -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Sales Pipeline</h3>
+                            <button class="icon-btn-small"><i class="ph ph-dots-three"></i></button>
+                        </div>
+                        <div class="card-body center-content">
+                             <canvas id="funnelChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Service Status -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Service Ticket Status</h3>
+                            <button class="icon-btn-small"><i class="ph ph-dots-three"></i></button>
+                        </div>
+                        <div class="card-body center-content">
+                            <canvas id="donutChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Rental Utilization -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Rental Utilization</h3>
+                            <button class="icon-btn-small"><i class="ph ph-dots-three"></i></button>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="barChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Section: Tables and Activity -->
+                <div class="bottom-layout">
+                    <!-- Recent Activities Table -->
+                    <div class="card table-card">
+                        <div class="card-header">
+                            <h3>Recent Operations</h3>
+                            <div class="header-actions">
+                                <button class="btn-secondary btn-small">View All</button>
+                                <button class="icon-btn-small"><i class="ph ph-dots-three"></i></button>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="premium-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID / Name</th>
+                                        <th>Module</th>
+                                        <th>Status</th>
+                                        <th>Priority</th>
+                                        <th>Date</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="item-with-icon">
+                                                <div class="avatar bg-light-blue"><i class="ph ph-user"></i></div>
+                                                <span class="fw-medium">Apex Corp</span>
+                                            </div>
+                                        </td>
+                                        <td><span class="text-subtle">CRM Lead</span></td>
+                                        <td><span class="badge badge-blue">New</span></td>
+                                        <td><span class="badge badge-outline-gray">Normal</span></td>
+                                        <td><span class="text-subtle">Today, 10:42 AM</span></td>
+                                        <td><button class="icon-btn-small"><i class="ph ph-dots-three"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="item-with-icon">
+                                                <div class="avatar bg-light-orange"><i class="ph ph-wrench"></i></div>
+                                                <span class="fw-medium">TKT-#1042</span>
+                                            </div>
+                                        </td>
+                                        <td><span class="text-subtle">Service</span></td>
+                                        <td><span class="badge badge-green">Resolved</span></td>
+                                        <td><span class="badge badge-red">High</span></td>
+                                        <td><span class="text-subtle">Yesterday</span></td>
+                                        <td><button class="icon-btn-small"><i class="ph ph-dots-three"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="item-with-icon">
+                                                <div class="avatar bg-light-teal"><i class="ph ph-car"></i></div>
+                                                <span class="fw-medium">RNT-#331</span>
+                                            </div>
+                                        </td>
+                                        <td><span class="text-subtle">Rental</span></td>
+                                        <td><span class="badge badge-blue">Ongoing</span></td>
+                                        <td><span class="badge badge-orange">Medium</span></td>
+                                        <td><span class="text-subtle">Sep 25, 2026</span></td>
+                                        <td><button class="icon-btn-small"><i class="ph ph-dots-three"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="item-with-icon">
+                                                <div class="avatar bg-light-purple"><i class="ph ph-file-doc"></i></div>
+                                                <span class="fw-medium">AMC-#120</span>
+                                            </div>
+                                        </td>
+                                        <td><span class="text-subtle">AMC</span></td>
+                                        <td><span class="badge badge-green">Active</span></td>
+                                        <td><span class="badge badge-outline-gray">Normal</span></td>
+                                        <td><span class="text-subtle">Sep 20, 2026</span></td>
+                                        <td><button class="icon-btn-small"><i class="ph ph-dots-three"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="item-with-icon">
+                                                <div class="avatar bg-light-red"><i class="ph ph-receipt"></i></div>
+                                                <span class="fw-medium">INV-#998</span>
+                                            </div>
+                                        </td>
+                                        <td><span class="text-subtle">Invoices</span></td>
+                                        <td><span class="badge badge-orange">Pending</span></td>
+                                        <td><span class="badge badge-red">High</span></td>
+                                        <td><span class="text-subtle">Sep 18, 2026</span></td>
+                                        <td><button class="icon-btn-small"><i class="ph ph-dots-three"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Activity Feed -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Activity Feed</h3>
+                            <button class="icon-btn-small"><i class="ph ph-dots-three"></i></button>
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-marker bg-blue"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">New Lead Assigned</div>
+                                        <div class="timeline-desc">'Apex Corp' assigned to John Doe.</div>
+                                        <div class="timeline-time">2 hours ago</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker bg-green"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Service Ticket #1042 Resolved</div>
+                                        <div class="timeline-desc">Maintenance completed by Mike.</div>
+                                        <div class="timeline-time">Yesterday</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker bg-teal"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Rental Booking #331</div>
+                                        <div class="timeline-desc">Equipment dispatched to site.</div>
+                                        <div class="timeline-time">Sep 25</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker bg-purple"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">AMC #120 Renewed</div>
+                                        <div class="timeline-desc">Contract extended for 12 months.</div>
+                                        <div class="timeline-time">Sep 20</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>
