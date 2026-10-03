@@ -1,56 +1,61 @@
 "use client"
 
+import { Search, Bell, ChevronDown } from "lucide-react"
 import { usePathname } from "next/navigation"
-import { Search } from "lucide-react"
-
-const PAGE_TITLES: Record<string, string> = {
-  "/":           "Overview & Performance",
-  "/crm":        "Customer Relationship Management",
-  "/leads":      "Leads Pipeline",
-  "/sales":      "Sales Pipeline",
-  "/quotations": "Quotations",
-  "/orders":     "Order Management",
-  "/inventory":  "Inventory Control",
-  "/service":    "Service & Support",
-  "/rental":     "Rental Fleet",
-  "/amc":        "AMC Management",
-  "/customers":  "Customer Directory",
-  "/invoices":   "Invoicing",
-  "/payments":   "Payment Tracking",
-  "/reports":    "Analytics & Reports",
-  "/ai":         "AI Copilot",
-  "/settings":   "System Settings",
-}
-
-function getPageTitle(pathname: string): string {
-  if (PAGE_TITLES[pathname]) return PAGE_TITLES[pathname]
-  const segment = "/" + pathname.split("/")[1]
-  return PAGE_TITLES[segment] ?? "Dashboard"
-}
 
 export function Topbar() {
   const pathname = usePathname()
-  const pageTitle = getPageTitle(pathname)
 
   return (
-    <header className="h-24 flex items-center justify-between shrink-0 z-20 px-10 bg-white border-b border-[#F0F0F0]">
-      {/* Left — Dynamic Page Title */}
-      <div>
-        <h1 className="text-2xl font-bold text-[#000000] tracking-tight">
-          {pageTitle} 👋,
-        </h1>
-      </div>
-
-      {/* Right — Search */}
-      <div className="flex items-center">
-        <div className="relative">
-          <Search className="w-5 h-5 text-[#9197B3] absolute left-3 top-1/2 -translate-y-1/2" />
+    <header className="h-24 flex items-center justify-between shrink-0 z-20 px-8 bg-background border-none">
+      
+      {/* Left — Search */}
+      <div className="flex-1 flex items-center">
+        <div className="relative w-[400px]">
+          <Search className="w-5 h-5 text-muted-foreground absolute left-4 top-1/2 -translate-y-1/2" />
           <input 
             type="text" 
             placeholder="Search" 
-            className="w-64 h-10 bg-white rounded-lg pl-10 pr-4 text-sm text-[#000000] placeholder:text-[#9197B3] focus:outline-none focus:ring-2 focus:ring-[#5932EA] transition-all shadow-sm"
+            className="w-full h-12 bg-muted rounded-full pl-12 pr-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all border-none"
           />
         </div>
+      </div>
+
+      {/* Right — Utilities & Profile */}
+      <div className="flex items-center gap-6">
+        
+        {/* Live Toggle */}
+        <div className="flex items-center gap-2">
+          <div className="w-9 h-5 bg-success/20 rounded-full flex items-center p-0.5 cursor-pointer">
+            <div className="w-4 h-4 bg-success rounded-full shadow-sm ml-auto"></div>
+          </div>
+          <span className="text-sm font-medium text-foreground">Live</span>
+        </div>
+
+        {/* Language Dropdown */}
+        <div className="flex items-center gap-2 border border-border px-4 py-2 rounded-full cursor-pointer hover:bg-muted/50 transition-colors">
+          <span className="text-sm font-medium text-foreground">English</span>
+          <ChevronDown className="w-4 h-4 text-muted-foreground" />
+        </div>
+
+        {/* Notifications */}
+        <div className="relative w-10 h-10 rounded-full bg-muted flex items-center justify-center cursor-pointer">
+          <Bell className="w-5 h-5 text-muted-foreground" />
+          <div className="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border-2 border-background"></div>
+        </div>
+
+        {/* Profile */}
+        <div className="flex items-center gap-3 cursor-pointer">
+          <div className="w-10 h-10 rounded-full bg-muted overflow-hidden">
+            <img src="https://ui-avatars.com/api/?name=Admin+User&background=E8D1FE&color=111827" alt="Avatar" className="w-full h-full object-cover" />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-sm font-bold text-foreground">Synergy Admin</span>
+            <span className="text-xs text-muted-foreground">ID: 1234567</span>
+          </div>
+          <ChevronDown className="w-4 h-4 text-muted-foreground ml-1" />
+        </div>
+
       </div>
     </header>
   )

@@ -23,17 +23,9 @@ export function ThemeProvider({
 
   useEffect(() => {
     setMounted(true)
-    const storedTheme = localStorage.getItem("ui-theme") as Theme | null
-    if (storedTheme) {
-      setTheme(storedTheme)
-    } else {
-      // Check system preference
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        setTheme("dark")
-      } else {
-        setTheme("light")
-      }
-    }
+    // Force light theme permanently to match Payd UI perfectly
+    setTheme("light")
+    localStorage.setItem("ui-theme", "light")
   }, [])
 
   useEffect(() => {

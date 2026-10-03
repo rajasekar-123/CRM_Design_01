@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ──────────────────────────────────────────────────────────────
+// Existing Models (Extended)
+// ──────────────────────────────────────────────────────────────
+
+model Customer {
+  id            String   @id @default(uuid())
+  name          String
+  phone         String   @unique
+  email         String?
+  source        String?  // e.g. WHATSAPP, WEBSITE, PHONE
+  type          String   @default("individual")
+  status        String   @default("active")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  leads         Lead[]
+  conversations WhatsAppConversation[]
+}
+
+model Lead {
+  id            String   @id @default(uuid())
+  customerId    String
+  customer      Customer @relation(fields: [customerId], references: [id])
+  source        String   // e.g. WHATSAPP, WEBSITE, PHONE
+  leadType      String   // SALES, SERVICE, RENTAL, AMC
+  requirement   String?
+  status        String   // NEW, CONTACTED, QUALIFIED, FOLLOW_UP, CONVERTED, LOST
+  priority      String   @default("normal")
+  assignedTo    String?
+  followUpAt    DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// ──────────────────────────────────────────────────────────────
+// WhatsApp specific models
+// ──────────────────────────────────────────────────────────────
+
+model WhatsAppConversation {
+  id              String   @id @default(uuid())
+  customerId      String
+  customer        Customer @relation(fields: [customerId], references: [id])
+  phoneNumber     String
+  phoneNumberId   String?
+  status          String   @default("active")
+  lastMessageAt   DateTime @default(now())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  messages        WhatsAppMessage[]
+}
+
+model WhatsAppMessage {
+  id                String               @id @default(uuid())
+  conversationId    String
+  conversation      WhatsAppConversation @relation(fields: [conversationId], references: [id])
+  whatsappMessageId String               @unique
+  direction         String               // INBOUND, OUTBOUND
+  messageType       String               // text, image, document, template
+  messageText       String?
+  mediaUrl          String?
+  status            String               // RECEIVED, SENT, DELIVERED, READ, FAILED
+  timestamp         DateTime
+  createdAt         DateTime             @default(now())
+}

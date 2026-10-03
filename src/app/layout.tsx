@@ -1,13 +1,13 @@
 import type { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
+import { Plus_Jakarta_Sans } from "next/font/google"
 import "./globals.css"
 import { QueryProvider } from "@/lib/query-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 import { DashboardShell } from "@/components/layout/DashboardShell"
 
-const inter = Inter({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-inter", /* Keeping the variable name same to avoid changing tailwind config */
   display: "swap",
 })
 
@@ -32,7 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased bg-white text-[#000000] transition-colors duration-300`}>
+      <body className={`${plusJakarta.variable} font-sans antialiased bg-background text-foreground transition-colors duration-300`}>
         <ThemeProvider defaultTheme="light">
           <QueryProvider>
             <DashboardShell>

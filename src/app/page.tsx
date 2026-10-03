@@ -1,182 +1,121 @@
 "use client"
 
-import { DollarSign, FileText, ShoppingBag, ChevronDown, Search } from "lucide-react"
+import { ChevronDown, Search, ArrowRight } from "lucide-react"
 
 export default function DashboardPage() {
   return (
-    <div className="flex flex-col gap-8 pb-10">
+    <div className="flex flex-col lg:flex-row gap-8 pb-10 min-h-[calc(100vh-6rem)]">
       
-      {/* KPI Cards Row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col pt-4">
         
-        {/* Card 1: Total Revenue */}
-        <div className="bg-[#151B2B] rounded-[20px] p-6 flex items-center gap-5 border border-[#1E2536] shadow-lg">
-          <div className="w-16 h-16 rounded-2xl bg-[#00AC56]/10 flex items-center justify-center shrink-0">
-            <DollarSign className="w-7 h-7 text-[#00AC56]" strokeWidth={2.5} />
+        {/* Greeting & Main Stat */}
+        <div className="mb-10">
+          <div className="flex items-center gap-2 mb-3">
+         
+            <span className="text-warning font-bold text-lg">Hey Admin!</span>
           </div>
-          <div className="flex flex-col">
-            <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-1">Total Revenue</span>
-            <span className="text-white text-[28px] font-bold leading-none">$1.25M</span>
-            <div className="text-xs font-medium flex items-center gap-1 mt-2">
-              <span className="text-[#00AC56]">↑ 12.5%</span>
-              <span className="text-slate-500">this month</span>
+          <h2 className="text-4xl font-black text-foreground tracking-tight">
+            You earned $ 1,250,000 this month.
+          </h2>
+        </div>
+
+        {/* Chart Section */}
+        <div className="mb-10">
+          <div className="flex items-center mb-6">
+            <div className="flex items-center gap-2 bg-muted px-4 py-2 rounded-full cursor-pointer hover:bg-muted/80 transition-colors">
+              <span className="text-sm font-semibold text-primary">Last 30 days</span>
+              <ChevronDown className="w-4 h-4 text-primary" />
+            </div>
+          </div>
+
+          {/* Large Card for Chart */}
+          <div className="bg-card rounded-[2rem] p-8 border border-border/50 shadow-sm relative h-[300px] flex items-end">
+            
+            {/* Horizontal Dashed Lines */}
+            <div className="absolute inset-0 p-8 flex flex-col justify-between pointer-events-none">
+              {[200000, 150000, 100000, 50000, 0].map((val, i) => (
+                <div key={i} className="flex items-center gap-4 w-full relative">
+                  <span className="text-xs font-medium text-muted-foreground w-12 text-right">{val === 0 ? '0' : (val/1000).toLocaleString() + 'k'}</span>
+                  <div className="flex-1 border-b border-dashed border-border"></div>
+                </div>
+              ))}
+            </div>
+
+            {/* Bars */}
+            <div className="w-full flex justify-between items-end pl-20 pr-4 h-[220px] relative z-10">
+              {[
+                { label: 'Mar 1 - 7', height: '25%' },
+                { label: 'Mar 8 - 14', height: '60%' },
+                { label: 'Mar 15 - 21', height: '60%' },
+                { label: 'Mar 22 - 28', height: '60%' },
+                { label: 'Final wk', height: '95%' },
+              ].map((bar, i) => (
+                <div key={i} className="flex flex-col items-center gap-4 w-16 group cursor-pointer h-full justify-end">
+                  <div 
+                    className="w-full rounded-t-xl bg-primary hover:bg-primary/80 transition-colors duration-300"
+                    style={{ height: bar.height }}
+                  />
+                  <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">{bar.label}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Card 2: Pending Payments */}
-        <div className="bg-[#151B2B] rounded-[20px] p-6 flex items-center gap-5 border border-[#1E2536] shadow-lg">
-          <div className="w-16 h-16 rounded-2xl bg-[#5A32EA]/10 flex items-center justify-center shrink-0">
-            <FileText className="w-7 h-7 text-[#5A32EA]" strokeWidth={2.5} />
+        {/* Bottom Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-card rounded-[2rem] p-8 border border-border/50 shadow-sm h-48 flex flex-col">
+            <h3 className="text-lg font-bold text-foreground mb-1">Success rate</h3>
+            <p className="text-sm text-muted-foreground mb-auto">Compared to last month</p>
+            <div className="text-3xl font-black text-foreground">98.5%</div>
           </div>
-          <div className="flex flex-col">
-            <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-1">Pending Payments</span>
-            <span className="text-white text-[28px] font-bold leading-none">$45.2k</span>
-            <div className="text-xs font-medium flex items-center gap-1 mt-2">
-              <span className="text-[#D0004B]">3 Overdue</span>
-              <span className="text-slate-500">invoices</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Card 3: Total Sales */}
-        <div className="bg-[#151B2B] rounded-[20px] p-6 flex items-center gap-5 border border-[#1E2536] shadow-lg">
-          <div className="w-16 h-16 rounded-2xl bg-[#D0004B]/10 flex items-center justify-center shrink-0">
-            <ShoppingBag className="w-7 h-7 text-[#D0004B]" strokeWidth={2.5} />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-1">Total Sales</span>
-            <span className="text-white text-[28px] font-bold leading-none">842</span>
-            <div className="text-xs font-medium flex items-center gap-1 mt-2">
-              <span className="text-[#00AC56]">↑ 8%</span>
-              <span className="text-slate-500">this week</span>
-            </div>
+          <div className="bg-card rounded-[2rem] p-8 border border-border/50 shadow-sm h-48 flex flex-col">
+            <h3 className="text-lg font-bold text-foreground mb-1">Payment issues</h3>
+            <p className="text-sm text-muted-foreground mb-auto">Requires your attention</p>
+            <div className="text-3xl font-black text-foreground">12</div>
           </div>
         </div>
-
       </div>
 
-      {/* Charts Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Right Sidebar Panel */}
+      <div className="w-full lg:w-[380px] shrink-0 bg-muted/50 rounded-[2.5rem] p-6 flex flex-col border border-border/50 shadow-sm">
         
-        {/* Overview Bar Chart */}
-        <div className="lg:col-span-2 bg-[#151B2B] border border-[#1E2536] rounded-[20px] p-6 shadow-lg">
-          <div className="flex justify-between items-start mb-8">
-            <div>
-              <h3 className="text-[22px] font-bold text-white">Revenue Overview</h3>
-              <p className="text-slate-400 text-sm">Monthly Performance</p>
-            </div>
-            <div className="flex items-center gap-2 bg-[#1C2333] px-3 py-1.5 rounded-lg text-slate-400 text-xs font-medium cursor-pointer hover:bg-[#1E2536]">
-              Quarterly <ChevronDown className="w-3 h-3" />
-            </div>
-          </div>
-          
-          {/* Simple CSS Bar Chart Representation */}
-          <div className="flex items-end justify-between h-[200px] mt-4 px-2">
-            {[
-              { month: 'Jan', height: '60%' },
-              { month: 'Feb', height: '45%' },
-              { month: 'Mar', height: '80%' },
-              { month: 'Apr', height: '65%' },
-              { month: 'May', height: '70%' },
-              { month: 'Jun', height: '35%' },
-              { month: 'Jul', height: '75%' },
-              { month: 'Aug', height: '100%', active: true },
-              { month: 'Sep', height: '90%' },
-              { month: 'Oct', height: '65%' },
-              { month: 'Nov', height: '55%' },
-              { month: 'Dec', height: '60%' },
-            ].map((bar) => (
-              <div key={bar.month} className="flex flex-col items-center gap-3 w-full group cursor-pointer">
-                <div 
-                  className={`w-10 rounded-xl transition-colors duration-300 ${bar.active ? 'bg-[#5A32EA]' : 'bg-[#1C2333] group-hover:bg-[#5A32EA]/50'}`}
-                  style={{ height: bar.height }}
-                />
-                <span className="text-[13px] font-medium text-slate-400">{bar.month}</span>
-              </div>
-            ))}
-          </div>
+        {/* Tabs */}
+        <div className="flex items-center justify-between mb-8 px-4 mt-2">
+          <div className="text-muted-foreground font-semibold cursor-pointer">Stats</div>
+          <div className="text-foreground font-bold cursor-pointer border-b-2 border-foreground pb-1">Messages</div>
         </div>
 
-        {/* Customers Donut Chart */}
-        <div className="lg:col-span-1 bg-[#151B2B] border border-[#1E2536] rounded-[20px] p-6 shadow-lg flex flex-col">
-          <div>
-            <h3 className="text-[22px] font-bold text-white">Active Operations</h3>
-            <p className="text-slate-400 text-sm">Distribution by department</p>
-          </div>
+        {/* Messages List */}
+        <div className="flex flex-col gap-4 flex-1 overflow-y-auto custom-scrollbar">
           
-          <div className="flex-1 flex items-center justify-center relative mt-6">
-            <div className="w-56 h-56 rounded-full border-[32px] border-[#1C2333] relative flex items-center justify-center">
-              <div 
-                className="absolute inset-[-32px] rounded-full"
-                style={{
-                  background: 'conic-gradient(#5A32EA 0% 40%, #1C2333 40% 65%, #F4308D 65% 100%)',
-                  WebkitMaskImage: 'radial-gradient(transparent 62%, black 62.5%)',
-                  maskImage: 'radial-gradient(transparent 62%, black 62.5%)'
-                }}
-              />
-              <div className="flex flex-col items-center justify-center z-10 bg-[#151B2B] rounded-full w-40 h-40 shadow-sm border border-[#1E2536]">
-                <span className="text-[32px] font-bold text-white leading-tight">65%</span>
-                <span className="text-[13px] font-medium text-slate-400 text-center leading-tight mt-1">Active<br/>Service</span>
+          {[
+            { id: 1, name: 'James Robinson', time: 'Jan 2, 12:31pm', msg: 'I need some maintenac...', initial: 'J', color: 'bg-[#43B9B9]', textColor: 'text-white' },
+            { id: 2, name: 'Eseosa Igbinobaro', time: 'Wed, 06:00pm', msg: 'I got your email ad and ...', initial: 'E', color: 'bg-[#8F63B9]', textColor: 'text-white' },
+            { id: 3, name: 'James Robinson', time: 'Jan 2, 12:31pm', msg: 'I need some maintenac...', initial: 'J', color: 'bg-[#43B9B9]', textColor: 'text-white' },
+            { id: 4, name: 'Laila Hassan', time: 'Feb 13, 08:15pm', msg: 'Order has been confir...', initial: 'L', color: 'bg-[#F9A826]', textColor: 'text-white' },
+            { id: 5, name: 'Samuel Doe', time: 'Yesterday', msg: 'Please check the invoi...', initial: 'S', color: 'bg-[#E6CCFF]', textColor: 'text-[#4A1E7A]' },
+          ].map((msg) => (
+            <div key={msg.id} className="bg-card rounded-3xl p-5 flex flex-col gap-3 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
+              <div className="flex items-center justify-between">
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold ${msg.color} ${msg.textColor}`}>
+                  {msg.initial}
+                </div>
+                <span className="text-[11px] font-medium text-muted-foreground">{msg.time}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="text-[15px] font-bold text-foreground">{msg.name}</h4>
+                  <p className="text-[13px] text-muted-foreground truncate w-48">{msg.msg}</p>
+                </div>
+                <ChevronDown className="w-4 h-4 text-foreground -rotate-90 shrink-0" />
               </div>
             </div>
-          </div>
+          ))}
+          
         </div>
 
-      </div>
-
-      {/* Product Sell Table */}
-      <div className="bg-[#151B2B] border border-[#1E2536] rounded-[20px] p-6 shadow-lg">
-        
-        <div className="flex justify-between items-center mb-6">
-          <h3 className="text-[22px] font-bold text-white">Recent Orders</h3>
-          <div className="flex items-center gap-4">
-            <div className="relative">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-              <input 
-                type="text" 
-                placeholder="Search orders" 
-                className="w-48 h-9 bg-[#1C2333] border border-[#1E2536] rounded-lg pl-9 pr-3 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-[#5932EA] transition-all"
-              />
-            </div>
-            <div className="flex items-center gap-2 bg-[#1C2333] px-3 py-2 rounded-lg text-slate-400 text-xs font-medium cursor-pointer hover:bg-[#1E2536]">
-              Last 30 days <ChevronDown className="w-3 h-3" />
-            </div>
-          </div>
-        </div>
-
-        <table className="w-full text-left">
-          <thead>
-            <tr className="border-b border-[#1E2536]">
-              <th className="pb-3 text-slate-400 font-medium text-sm w-3/5">Order Details</th>
-              <th className="pb-3 text-slate-400 font-medium text-sm text-center">Status</th>
-              <th className="pb-3 text-slate-400 font-medium text-sm text-center">Total</th>
-              <th className="pb-3 text-slate-400 font-medium text-sm text-center">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {[
-              { name: 'ORD-2026-1001', desc: 'Apex Corporation', stock: 'Processing', price: '$ 33,000', sales: 'Oct 24', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=150&auto=format&fit=crop' },
-              { name: 'ORD-2026-1002', desc: 'Global Tech Solutions', stock: 'Delivered', price: '$ 26,500', sales: 'Oct 12', img: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=150&auto=format&fit=crop' },
-              { name: 'ORD-2026-1003', desc: 'Nexus Trading', stock: 'Confirmed', price: '$ 9,350', sales: 'Oct 05', img: 'https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=150&auto=format&fit=crop' },
-            ].map((product, i) => (
-              <tr key={i} className={i !== 2 ? "border-b border-[#1E2536]/50 hover:bg-[#1C2333]" : "hover:bg-[#1C2333]"}>
-                <td className="py-4">
-                  <div className="flex items-center gap-4">
-                    <img src={product.img} alt={product.name} className="w-20 h-12 object-cover rounded-xl opacity-20" />
-                    <div>
-                      <div className="font-bold text-[15px] text-white">{product.name}</div>
-                      <div className="text-xs text-slate-400 mt-0.5">{product.desc}</div>
-                    </div>
-                  </div>
-                </td>
-                <td className="py-4 text-center text-slate-300 text-sm font-medium">{product.stock}</td>
-                <td className="py-4 text-center text-white text-sm font-bold">{product.price}</td>
-                <td className="py-4 text-center text-slate-300 text-sm font-medium">{product.sales}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
       </div>
 
     </div>

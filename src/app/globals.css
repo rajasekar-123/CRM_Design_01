@@ -10,7 +10,7 @@
 @layer base {
   :root {
     /* Background */
-    --background:    0 0% 98%;
+    --background:    0 0% 100%; /* Pure white */
     --foreground:    222 47% 11%;
 
     /* Card / Surface */
@@ -21,20 +21,20 @@
     --popover:       0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    /* Primary — Blue */
-    --primary:       221 83% 53%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary — Payd Light Purple */
+    --primary:       275 80% 88%;
+    --primary-foreground: 222 47% 11%;
 
     /* Secondary */
-    --secondary:     210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary:     35 92% 56%; /* Payd Orange Accent */
+    --secondary-foreground: 0 0% 100%;
 
     /* Muted */
-    --muted:         210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted:         210 40% 98%; /* Very light grey for search/panels */
+    --muted-foreground: 215 16% 55%;
 
     /* Accent */
-    --accent:        210 40% 94%;
+    --accent:        210 40% 96%;
     --accent-foreground: 222 47% 11%;
 
     /* Destructive */
@@ -44,56 +44,57 @@
     /* Border / Input / Ring */
     --border:        214 32% 91%;
     --input:         214 32% 91%;
-    --ring:          221 83% 53%;
+    --ring:          275 80% 88%;
 
-    /* Sidebar specific */
-    --sidebar-bg:       222 47% 11%;
-    --sidebar-fg:       215 20% 65%;
-    --sidebar-active:   221 83% 53%;
-    --sidebar-hover:    0 0% 100% / 0.06;
+    /* Sidebar specific - Light theme */
+    --sidebar-bg:       0 0% 100%;
+    --sidebar-fg:       215 16% 55%;
+    --sidebar-active:   222 47% 11%; /* Active is dark text */
+    --sidebar-hover:    210 40% 98%;
 
     /* Semantic */
-    --success:   160 84% 39%;
-    --warning:   38 92% 50%;
+    --success:   152 69% 51%; /* Payd Green Toggle */
+    --warning:   35 92% 56%; /* Payd Orange */
     --danger:    0 84% 60%;
-    --info:      199 89% 48%;
+    --info:      275 80% 88%;
 
     /* Radius */
-    --radius: 0.625rem;
+    --radius: 1.5rem; /* Very rounded cards */
   }
 
   .dark {
-    --background:    222 47% 8%;
-    --foreground:    210 40% 96%;
+    --background:    222 47% 11%; /* Dark slate */
+    --foreground:    210 40% 98%;
 
-    --card:          222 47% 11%;
-    --card-foreground: 210 40% 96%;
+    --card:          215 28% 17%; /* Lighter slate for cards */
+    --card-foreground: 210 40% 98%;
 
-    --popover:       222 47% 11%;
-    --popover-foreground: 210 40% 96%;
+    --popover:       215 28% 17%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary:       221 83% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary:       275 80% 88%; /* Same light purple looks great on dark */
+    --primary-foreground: 222 47% 11%;
 
-    --secondary:     217 33% 17%;
-    --secondary-foreground: 210 40% 96%;
+    --secondary:     35 92% 56%; /* Orange */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted:         217 33% 17%;
-    --muted-foreground: 215 20% 60%;
+    --muted:         215 28% 17%; /* Same as card for panels */
+    --muted-foreground: 215 20% 65%;
 
-    --accent:        217 33% 17%;
-    --accent-foreground: 210 40% 96%;
+    --accent:        215 28% 22%;
+    --accent-foreground: 210 40% 98%;
 
     --destructive:   0 62% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border:        217 33% 18%;
-    --input:         217 33% 18%;
-    --ring:          221 83% 60%;
+    --border:        217 33% 25%;
+    --input:         217 33% 25%;
+    --ring:          275 80% 88%;
 
-    --sidebar-bg:    222 47% 7%;
-    --sidebar-fg:    215 20% 55%;
-    --sidebar-active: 221 83% 60%;
+    --sidebar-bg:    222 47% 11%;
+    --sidebar-fg:    215 20% 65%;
+    --sidebar-active: 210 40% 98%;
+    --sidebar-hover:  215 28% 17%;
   }
 
   * {
@@ -134,14 +135,14 @@
     @apply flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-100 select-none;
   }
   .nav-link-inactive {
-    @apply text-slate-400 hover:text-slate-200 hover:bg-white/5;
+    @apply text-[hsl(var(--sidebar-fg))] hover:text-primary hover:bg-[hsl(var(--sidebar-hover))];
   }
   .nav-link-active {
-    @apply text-white bg-blue-600/90 shadow-sm;
+    @apply text-primary-foreground bg-primary shadow-sm;
   }
 
   /* Focus ring */
   .focus-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
   }
 }

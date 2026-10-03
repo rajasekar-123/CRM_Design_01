@@ -51,9 +51,20 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
         sidebar: {
-          DEFAULT: "hsl(var(--sidebar))",
+          DEFAULT: "hsl(var(--sidebar-bg))",
           hover: "hsl(var(--sidebar-hover))",
           border: "hsl(var(--sidebar-border))",
+          fg: "hsl(var(--sidebar-fg))",
+          active: "hsl(var(--sidebar-active))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+        },
+        info: {
+          DEFAULT: "hsl(var(--info))",
         }
       },
       fontFamily: {
